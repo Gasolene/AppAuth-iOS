@@ -99,6 +99,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, readonly, nullable) NSDictionary<NSString *, NSString *> *additionalParameters;
 
+/*! @property username
+ @brief The username for basic authentication
+ */
+@property(nonatomic, readonly) NSString *username;
+
+/*! @property password
+ @brief The password for basic authentication
+ */
+@property(nonatomic, readonly) NSString *password;
+
+
 /*! @fn init
     @internal
     @brief Unavailable. Please use
@@ -158,6 +169,11 @@ NS_ASSUME_NONNULL_BEGIN
     @return An @c NSURLRequest representing the token request.
  */
 - (NSURLRequest *)URLRequest;
+
+/*! @fn useBasicAuth
+ @brief Use basic authentication
+ */
+- (void)useBasicAuth:(NSString *)username password:(NSString *)password;
 
 @end
 

@@ -65,8 +65,8 @@ static NSString *const kRefreshTokenKey = @"refresh_token";
 static NSString *const kCodeVerifierKey = @"code_verifier";
 
 /*! @var kAdditionalParametersKey
-    @brief Key used to encode the @c additionalParameters property for
-        @c NSSecureCoding
+ @brief Key used to encode the @c additionalParameters property for
+ @c NSSecureCoding
  */
 static NSString *const kAdditionalParametersKey = @"additionalParameters";
 
@@ -264,7 +264,21 @@ static NSString *const kAdditionalParametersKey = @"additionalParameters";
   URLRequest.HTTPMethod = kHTTPPost;
   [URLRequest setValue:kHTTPContentTypeHeaderValue forHTTPHeaderField:kHTTPContentTypeHeaderKey];
   URLRequest.HTTPBody = [self tokenRequestBody];
+
+  // User basic auth
+  if(_username != nil && _password != nil) {
+    NSString *authStr = [NSString stringWithFormat:@"%@:%@", _username, _password];
+    NSData *authData = [authStr dataUsingEncoding:NSASCIIStringEncoding];
+    NSString *authValue = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
+    [URLRequest setValue:authValue forHTTPHeaderField:@"Authorization"];
+  }
+
   return URLRequest;
+}
+
+- (void)useBasicAuth:(NSString *)username password:(NSString *)password {
+    _username = username;
+    _password = password;
 }
 
 @end
