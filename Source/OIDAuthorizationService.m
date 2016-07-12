@@ -92,9 +92,9 @@ NS_ASSUME_NONNULL_BEGIN
   return OIDIsEqualIncludingNil(standardizedURL.scheme, standardizedRedirectURL.scheme) &&
       OIDIsEqualIncludingNil(standardizedURL.user, standardizedRedirectURL.user) &&
       OIDIsEqualIncludingNil(standardizedURL.password, standardizedRedirectURL.password) &&
-      OIDIsEqualIncludingNil(standardizedURL.host, standardizedRedirectURL.host) &&
-      OIDIsEqualIncludingNil(standardizedURL.port, standardizedRedirectURL.port) &&
-      OIDIsEqualIncludingNil(standardizedURL.path, standardizedRedirectURL.path);
+      OIDIsEqualIncludingNil(standardizedURL.host, standardizedRedirectURL.host);
+//      OIDIsEqualIncludingNil(standardizedURL.port, standardizedRedirectURL.port) &&
+//      OIDIsEqualIncludingNil(standardizedURL.path, standardizedRedirectURL.path);
 }
 
 - (BOOL)resumeAuthorizationFlowWithURL:(NSURL *)URL {
